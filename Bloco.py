@@ -2,7 +2,7 @@
 from tkinter import *
 from tkinter.filedialog import asksaveasfilename, askopenfilename  # importando dois objetos da biblioteca c a funcionalidade de salvar e abrir arquivos
 
-# Construindo nosso bloco de notas atraves da classe que comportara toda a estrutura de codigo
+# Construindo nosso bloco de notas atraves da classe que comportará toda a estrutura de codigo
 class BlocoPy:
     def __init__(self):
         # Definindo a janela inicial do bloco de notas
@@ -26,6 +26,12 @@ class BlocoPy:
 
         menu_bloco.add_cascade(label="Ajuda", menu=menu_ajuda)
         self.janela.config(menu=menu_bloco)
-        self.janela.mainloop()
+        # Criando um campo para escrever varias linhas
+        self.text = Text(self.janela) # adicionando a funcionalidade do texto
+        self.text.pack(expand=YES, fill=BOTH) # Expandindo e preenchendo a tela
+        self.text.config(yscrollcommand=barra_rolagem.set) # Definindo o comando da barra de rolagemm
+        self.text.config(command=self.text.yview) # Visualização do texto
 
-BlocoPy()
+        self.janela.mainloop() # Responsavel por deixar a janela aberta
+
+#BlocoPy()
