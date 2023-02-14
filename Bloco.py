@@ -35,3 +35,14 @@ class BlocoPy:
         self.janela.mainloop() # Responsavel por deixar a janela aberta
 
 #BlocoPy()
+    # Funcionalidade responsavel por salvar o bloco de notas
+    def salvar(self):
+        nome_arquivo = asksaveasfilename() #Funcão responsavel por salvar o arquivo
+        try:
+            arquivo = open(nome_arquivo, 'w')
+            texto_saida = self.text.get(0.0, END)
+            arquivo.write(texto_saida)
+        except:
+            pass
+        finally:
+            arquivo.close()
