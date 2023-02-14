@@ -46,3 +46,16 @@ class BlocoPy:
             pass
         finally:
             arquivo.close()
+    #Função de abrir o arquivo
+    def abrir(self):
+        nome_arquivo = askopenfilename()
+        try:
+            arquivo = open(nome_arquivo, 'r')
+            conteudo = arquivo.read()
+            
+            self.text.delete(0.0, END)
+            self.text.insert(0.0, conteudo)
+        except:
+            pass
+
+        
