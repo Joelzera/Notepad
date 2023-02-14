@@ -30,8 +30,42 @@ class BlocoPy:
         self.text = Text(self.janela) # adicionando a funcionalidade do texto
         self.text.pack(expand=YES, fill=BOTH) # Expandindo e preenchendo a tela
         self.text.config(yscrollcommand=barra_rolagem.set) # Definindo o comando da barra de rolagemm
-        self.text.config(command=self.text.yview) # Visualização do texto
+        barra_rolagem.config(command=self.text.yview) # Visualização do texto
 
         self.janela.mainloop() # Responsavel por deixar a janela aberta
 
-#BlocoPy()
+
+    # Funcionalidade responsavel por salvar o bloco de notas
+    def salvar(self):
+        nome_arquivo = asksaveasfilename() #Funcão responsavel por salvar o arquivo
+        try:
+            arquivo = open(nome_arquivo, 'w')
+            texto_saida = self.text.get(0.0, END)
+            arquivo.write(texto_saida)
+        except:
+            pass
+        finally:
+            arquivo.close()
+    #Função de abrir o arquivo
+    def abrir(self):
+        nome_arquivo = askopenfilename()
+        try:
+            arquivo = open(nome_arquivo, 'r')
+            conteudo = arquivo.read()
+            
+            self.text.delete(0.0, END)
+            self.text.insert(0.0, conteudo)
+        except:
+            pass
+    #Função "Sobre"
+    def sobre(self):
+        janela = Tk()
+
+        janela.title("Sobre")
+
+        texto = ("BlocoPy Joelzera: versao 1.0")
+        texto_label = Label(janela, text=texto)
+        texto_label.pack()
+
+BlocoPy()
+        
